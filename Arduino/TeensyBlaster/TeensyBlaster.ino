@@ -1,6 +1,7 @@
+// http://husks.wordpress.com/2011/05/23/a-minimal-arduino-library-for-processing-serial-commands/
 #include <SerialCommand.h>
+// http://www.pjrc.com/teensy/td_libs_IRremote.html
 #include <IRremote.h>
-#include <EEPROM.h>
 
 /*
  Global Configuration
@@ -35,9 +36,13 @@ void unrecognized()
   Serial.println("Unrecognized command."); 
 }
 
+/*
+ Commands
+ */
+ 
 void testCommand()
 {
-  /* Write some sequenced NEC goop */
+  /* Write some sequenced NEC goop -- useful for testing devices that can receive arbitrary IR */
   digitalWrite(arduinoLED, HIGH);  
   irsend.sendNEC(0x56781234, 32);
   irsend.sendNEC(0x12345678, 32);  
@@ -70,6 +75,10 @@ void led1()
   OK();
 }
 
+/*
+ Setup & Event Handling
+ */
+
 void setup()
 {
   pinMode(arduinoLED,OUTPUT);
@@ -78,7 +87,7 @@ void setup()
 
   SCmd.addCommand("led1",led1);
   SCmd.addCommand("led0",led0);
-  SCmd.addCommand("s",sonyTVPower);
+  SCmd.addCommand("sp",sonyTVPower);
 
   SCmd.addCommand("TEST",testCommand);
   SCmd.addDefaultHandler(unrecognized); 
