@@ -1,6 +1,9 @@
+// https://github.com/kroimon/Arduino-SerialCommand
+// Which is an updated fork of the link below with some nice additions:
 // http://husks.wordpress.com/2011/05/23/a-minimal-arduino-library-for-processing-serial-commands/
 #include <SerialCommand.h>
-// http://www.pjrc.com/teensy/td_libs_IRremote.html
+
+// http://arcfn.com/ir
 #include <IRremote.h>
 
 /*
